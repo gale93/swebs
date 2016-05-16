@@ -7,6 +7,14 @@ A simple, ready to use, web server for tests !
 * Replay with the content of "resources" directory.
 * Echo the JSON stuff you send via websocket ( /socket is the channel ) 
 
+## Configs
+
+You can change via flag this settings:
+
+* -port ( Default: 9393 )
+* -checkdir (Default: true. it creates the directory if not exists)
+* -ws (Default: true. Enables the websocket thingy you read before )
+
 ## How to get it work ?
 
 No dependencies, no nothing. Just click on the executable and you are ready.
@@ -16,11 +24,3 @@ No dependencies, no nothing. Just click on the executable and you are ready.
 Here you go my little friend:
 
 ![How to Click](/media/swebs.gif)
-
-## Configs
-
-You can change via flag this settings:
-
-* -port ( Default: 9393 )
-* -checkdir (Default: true. it creates the directory if not exists)
-* -ws (Default: true. Enables the websocket thingy you read before )
