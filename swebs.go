@@ -60,6 +60,6 @@ func main() {
 	}
 
 	// Let's get this party started
-	fmt.Println("Simple Server Started!")
+	fmt.Printf("swebs started [port %s] !\n", *port)
 	http.ListenAndServe(":"+*port, nil)
 }
