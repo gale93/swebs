@@ -5,29 +5,11 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"swebs/filehandler"
+	"swebs/ws"
 
 	"golang.org/x/net/websocket"
 )
-
-// wsEcho will echo everything it'll get via websocket
-func wsEcho(ws *websocket.Conn) {
-	defer ws.Close()
-
-	for {
-		var msg interface{}
-
-		// Get message from client
-		if err := websocket.JSON.Receive(ws, &msg); err != nil {
-			fmt.Println("dced: " + err.Error())
-			return
-		}
-
-		fmt.Println(msg)
-
-		// Echo it.
-		websocket.JSON.Send(ws, msg)
-	}
-}
 
 func main() {
 
@@ -38,17 +20,10 @@ func main() {
 	flag.Parse()
 
 	if *createDir {
-		if err := os.MkdirAll("resources", 0711); err != nil {
-			fmt.Println("Impossible create resources dir. Consider -checkdir=false.\n[error]: " + err.Error())
+		if err := filehandler.SetUp(); err != nil {
+			fmt.Println(err.Error())
 			os.Exit(1)
 		}
-		f, err := os.Create("resources/index.html")
-		if err != nil {
-			fmt.Println("Impossible create resources dir. Consider -checkdir=false.\n[error]: " + err.Error())
-			os.Exit(1)
-		}
-
-		f.Write([]byte("<h1>Hello simple world!</h1>"))
 	}
 
 	// Redirecting requests to resources' folder
@@ -56,7 +31,7 @@ func main() {
 
 	// Activate ws handler
 	if *wsActive {
-		http.Handle("/socket", websocket.Handler(wsEcho))
+		http.Handle("/socket", websocket.Handler(ws.Handle))
 	}
 
 	// Let's get this party started
