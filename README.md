@@ -5,7 +5,7 @@ A simple, ready to use, web server for tests !
 
 * Listen on a port
 * Replay with the content of "resources" directory.
-* Echo the JSON stuff you send via websocket ( /socket is the channel ) 
+* Simulate a JSON api via websocket (eg. You ask for "thing" and he replay with the content of json/thing.json)
 
 ## Configs
 
