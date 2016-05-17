@@ -1,5 +1,5 @@
 ![GitHub Logo](/media/logo.png)
-A simple, ready to use, web server for tests ! 
+A simple, ready to use, web server for tests !
 
 ## What it does ?
 
@@ -24,3 +24,15 @@ No dependencies, no nothing. Just click on the executable and you are ready.
 Here you go my little friend:
 
 ![How to Click](/media/swebs.gif)
+
+## Building
+
+To build for your platform, use one of the following commands:
+
+```sh
+GOOS=windows go build -o bin/win/swebs.exe
+```
+
+```sh
+GOOS=darwin go build -o bin/osx/swebs
+```
