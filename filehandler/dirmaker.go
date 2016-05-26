@@ -25,12 +25,14 @@ func SetUp() error {
 		return fmt.Errorf(errMsg + "[error] : " + err.Error())
 	}
 
-	f, err := os.Create(path + "/resources/index.html")
-	if err != nil {
-		return fmt.Errorf(errMsg + "[error] : " + err.Error())
-	}
+	if _, err := os.Stat(path + "/resources/index.html"); os.IsNotExist(err) {
+		f, err := os.Create(path + "/resources/index.html")
+		if err != nil {
+			return fmt.Errorf(errMsg + "[error] : " + err.Error())
+		}
 
-	f.Write([]byte("<h1>Hello simple world!</h1>"))
+		f.Write([]byte("<h1>Hello simple world!</h1>"))
+	}
 
 	return nil
 }
